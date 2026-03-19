@@ -54,7 +54,7 @@ export default async function MovieDetailPage({
             <div className="text-white mt-8">
                 <h2 className="text-2xl font-bold mb-4">Top Cast</h2>
                 <div className="flex gap-4 overflow-x-auto">
-                    {movie.credits.cast.slice(0, 5).map(actor => (
+                    {(movie.credits?.cast || []).slice(0, 5).map(actor => (
                         <div key={actor.id} className="flex-shrink-0">
                             <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 relative">
                                 <Image 
