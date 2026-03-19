@@ -17,6 +17,13 @@ export default function Navbar() {
             setUser(session?.user || null);
         };
         checkSession();
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            setUser(session?.user || null);
+        });
+
+        return () => subscription?.unsubscribe();
     }, []);
 
     const handleSearch = () => {
