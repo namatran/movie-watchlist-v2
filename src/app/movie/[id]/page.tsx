@@ -1,6 +1,7 @@
 import { getMovieDetails } from "@/lib/tmdb"
 import Image from 'next/image'
 import VideoPlayer from "@/components/VideoPlayer";
+import WatchlistButton from "@/components/WatchlistButton";
 
 // Frontend Movie Details easy enough
 export default async function MovieDetailPage({
@@ -22,6 +23,7 @@ export default async function MovieDetailPage({
                     {movie.runtime ? <p>{Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m</p> : null}
                     <p className="text-yellow-400">⭐ {movie.vote_average}</p>
                 </div>
+                <WatchlistButton movie={movie}/>
             </div>
 
             <div className="mt-8 flex gap-10"> {/* max-w-sm = max 24rem width */}

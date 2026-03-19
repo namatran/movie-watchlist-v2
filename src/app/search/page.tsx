@@ -2,7 +2,6 @@ import { searchMovies } from "@/lib/tmdb";
 import MovieCard from "@/components/MovieCard";
 import { redirect } from "next/navigation";
 
-
 export default async function SearchPage({ searchParams }) {
     const params = await searchParams;
     const query = params.query;
