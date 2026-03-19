@@ -92,3 +92,9 @@ src/
 ---
 
 Built as a portfolio project for full-stack development.
+
+## Screenshots
+![Home](screenshots/Home.png)
+![Movie Detail](screenshots/Search.png)
+![Watchlist](screenshots/Detail.png)
+![WatchlistMobile](screenshots/Watchlist.png)
