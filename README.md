@@ -1,82 +1,94 @@
 # Movie Watchlist V2
 
-A movie discovery and watchlist app built with Next.js, React, and the TMDB API.
+A full-stack movie discovery and watchlist app built with Next.js, React, Supabase, and the TMDB API.
 
 ## Features
 
-- Browse popular movies
+- Browse popular movies with responsive grid layout
 - Search for movies by title
-- View detailed movie information (runtime, genres, overview, cast)
-- Watch official trailers with video dropdown
-- Responsive design for mobile and desktop
+- View detailed movie information (runtime, genres, overview, cast with photos)
+- Watch official trailers with video dropdown selector
+- User authentication with Supabase
+- Per-user watchlist — save movies and manage your collection
 
 ## Tech Stack
 
 - **Frontend**: Next.js 16, React, TypeScript, Tailwind CSS
+- **Database**: Supabase (PostgreSQL + Row Level Security)
+- **Authentication**: Supabase Auth
 - **Image Optimization**: Next.js Image component
 - **API**: TMDB (The Movie Database) API
-- **Deployment**: Vercel (planned)
+- **Deployment**: Vercel
+
+## Live Demo
+
+[Your deployed Vercel URL will go here]
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js 18+
-- TMDB API key (get one free at https://www.themoviedb.org/settings/api)
+- TMDB API key (free at https://www.themoviedb.org/settings/api)
+- Supabase account (free tier at https://supabase.com)
 
-### Installation
+### Environment Variables
 
-1. Clone the repo:
-```bash
-git clone <your-repo-url>
-cd movie-watchlist-v2
+Create `.env.local` in the root:
 ```
-
-2. Install dependencies:
-```bash
-npm install
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+TMDB_API_KEY=your_tmdb_api_key
 ```
-
-3. Create `.env.local` and add your TMDB API key:
-```
-TMDB_API_KEY=your_api_key_here
-```
-
-4. Run the dev server:
-```bash
-npm run dev
-```
-
-5. Open http://localhost:3000 in your browser
 
 ## Project Structure
 ```
 src/
 ├── app/
-│   ├── page.tsx              ← Home page (popular movies)
+│   ├── page.tsx              ← Home (popular movies)
 │   ├── search/page.tsx       ← Search results
-│   ├── movie/[id]/page.tsx   ← Movie detail page
+│   ├── movie/[id]/page.tsx   ← Movie detail with trailer
+│   ├── watchlist/page.tsx    ← User's watchlist (protected)
+│   ├── login/page.tsx        ← Login
+│   ├── signup/page.tsx       ← Sign up
 │   ├── layout.tsx            ← Root layout with Navbar
+│   ├── loading.tsx           ← Loading skeleton
 │   └── globals.css
 ├── components/
-│   ├── Navbar.tsx            ← Search bar and navigation
+│   ├── Navbar.tsx            ← Search bar, auth links
 │   ├── MovieCard.tsx         ← Movie poster card
-│   └── VideoPlayer.tsx       ← Trailer dropdown player
+│   ├── VideoPlayer.tsx       ← Trailer player with dropdown
+│   └── WatchlistButton.tsx   ← Add/remove from watchlist
 └── lib/
-    └── tmdb.ts               ← TMDB API functions
+    ├── tmdb.ts               ← TMDB API functions
+    ├── supabase.ts           ← Supabase client
+    └── types.ts              ← TypeScript interfaces
 ```
 
 ## Pages
 
-- **Home** (`/`) - Browse popular movies in a responsive grid
-- **Search** (`/search?query=...`) - Search for movies and view results
-- **Movie Detail** (`/movie/[id]`) - Full movie info, cast, trailer, and reviews
+- **Home** (`/`) - Browse popular movies
+- **Search** (`/search?query=...`) - Search and filter results
+- **Movie Detail** (`/movie/[id]`) - Full movie info, cast, trailer
+- **Watchlist** (`/watchlist`) - Your saved movies (login required)
+- **Login** (`/login`) - Sign in to your account
+- **Sign Up** (`/signup`) - Create new account
 
-## Next Steps
+## Key Features
 
-- Phase 4: User authentication with Supabase
-- Phase 5: Per-user watchlist database
-- Phase 6: Add to watchlist functionality
+- **Per-User Watchlist**: Supabase Row Level Security so users only see their own data (Tho I have not dealt with security before)
+- **Official Trailers**: Automatically sorts and displays official trailers first (Entirely AI'd though)
+- **Responsive Design**: Tailwind CSS
+- **Type Safety**: TypeScript support for better DX although it may be lacking in some areaas
+
+## What I Learned
+
+- Next.js 16 App Router and server/client components
+- BASIC Supabase authentication and database with RLS
+- BASIC TypeScript interfaces and type safety
+- Responsive design with Tailwind CSS
+- Managing external API data (TMDB)
+- State management with React hooks
 
 ---
 
-Built as a portfolio project
+Built as a portfolio project for full-stack development.
