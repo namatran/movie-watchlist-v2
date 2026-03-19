@@ -2,9 +2,10 @@
 // ENTIRELY CLAUDE AI
 
 import { useState } from "react";
+import { VideoPlayerProps } from "@/lib/types";
 
-export default function VideoPlayer({ videos }) {
-  let youtubeVideos = videos?.results?.filter(v => v.site === "YouTube") || [];
+export default function VideoPlayer({ videos }: VideoPlayerProps) {
+  let youtubeVideos = (videos?.results || []).filter(v => v.site === "YouTube");
   
   // Sort: Official/Main first, then Trailer, then Teaser, then others
   const sortedVideos = youtubeVideos.sort((a, b) => {
@@ -14,13 +15,13 @@ export default function VideoPlayer({ videos }) {
     if (aIsOfficial && !bIsOfficial) return -1;
     if (!aIsOfficial && bIsOfficial) return 1;
     
-    const typeOrder = { "Trailer": 0, "Teaser": 1 };
+    const typeOrder: Record<string, number> = { "Trailer": 0, "Teaser": 1 };
     const aOrder = typeOrder[a.type] ?? 999;
     const bOrder = typeOrder[b.type] ?? 999;
     return aOrder - bOrder;
   });
   
-  const [selectedVideo, setSelectedVideo] = useState(sortedVideos[0]);
+  const [selectedVideo, setSelectedVideo] = useState(sortedVideos[0] || null);
 
   if (sortedVideos.length === 0) return null;
 
@@ -28,10 +29,12 @@ export default function VideoPlayer({ videos }) {
     <div className="text-white flex-1">
       {sortedVideos.length > 1 && (
         <select 
-          value={selectedVideo?.key} 
+          value={selectedVideo?.key || ''} 
           onChange={(e) => {
             const video = sortedVideos.find(v => v.key === e.target.value);
-            setSelectedVideo(video);
+            if (video) {
+              setSelectedVideo(video);
+            }
           }}
           className="mb-4 p-2 bg-gray-700 text-white rounded w-full"
         >

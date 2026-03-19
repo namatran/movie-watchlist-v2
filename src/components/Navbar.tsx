@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
+import { User } from '@/lib/types';
 
 export default function Navbar() {
     const [search, setSearch] = useState('');
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
 
     useEffect(() => {
@@ -30,7 +31,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-black px-8 py-4">
+        <nav className="bg-black px-8 py-4 sticky top-0 z-50">
             <div className="flex justify-between items-center">
                 <Link href="/" className="text-white font-bold text-xl">Movie Watchlist</Link>
 

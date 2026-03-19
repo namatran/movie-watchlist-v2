@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Movie } from "@/lib/types";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie }: { movie: Movie }) {
     const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
     return (

@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import MovieCard from "@/components/MovieCard";
+import { WatchlistItem, User } from "@/lib/types";
 
 export default function WatchlistPage() {
-    const [watchlist, setWatchlist] = useState([]);
+    const [watchlist, setWatchlist] = useState<WatchlistItem[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 

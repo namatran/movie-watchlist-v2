@@ -11,7 +11,7 @@ export default function SignupPage() {
     const [error, setError] = useState("");
     const router = useRouter();
 
-    const handleSignup = async (e) => {
+    const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
 

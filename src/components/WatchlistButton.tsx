@@ -2,17 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { WatchlistButtonProps, User } from "@/lib/types";
 
-export default function WatchlistButton({ movie }) {
+export default function WatchlistButton({ movie }: WatchlistButtonProps) {
     const [isInWatchlist, setIsInWatchlist] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
 
     // Fetch current user
     useEffect(() => {
         const getUser = async () => {
             const { data: { session } } = await supabase.auth.getSession();
-            setUser(session?.user);
+            setUser(session?.user ?? null);
         };
         getUser();
     }, []);
