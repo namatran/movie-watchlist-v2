@@ -25,17 +25,18 @@ export default async function MovieDetailPage({
                 <WatchlistButton movie={movie}/>
             </div>
 
-            <div className="mt-8 flex gap-10"> {/* max-w-sm = max 24rem width */}
-                <div className="relative w-full aspect-[2/3] max-w-sm">
+            <div className="mt-8 flex flex-col lg:flex-row gap-10">
+                <div className="relative w-full lg:w-1/3 aspect-[2/3]">
                     <Image 
                         src={posterUrl} 
                         alt={movie.title}
                         fill
                         className="rounded-lg object-cover"
                     />
-                </div> 
-
-                <VideoPlayer videos={movie.videos} />
+                </div>
+                <div className="w-full lg:w-2/3">
+                    <VideoPlayer videos={movie.videos} />
+                </div>
             </div>
 
             <div className="text-white mt-8">
