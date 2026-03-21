@@ -20,10 +20,6 @@ A full-stack movie discovery and watchlist app built with Next.js, React, Supaba
 - **API**: TMDB (The Movie Database) API
 - **Deployment**: Vercel
 
-## Live Demo
-
-[Your deployed Vercel URL will go here]
-
 ## Getting Started
 
 ### Prerequisites
